@@ -1,6 +1,8 @@
 export const businessData = {
   businessName: "BizPilot Super Market",
 
+  businessScore: 92,
+
   revenue: 420000,
   expenses: 280000,
   profit: 140000,

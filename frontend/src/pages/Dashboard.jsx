@@ -70,7 +70,7 @@ export default function Dashboard() {
             />
             <StatsCard 
               title="Inventory Value" 
-              value="$84,120" 
+              value="₹84,120" 
               change="2.0%" 
               trend="up" 
               gradient="from-orange-500 to-red-500"

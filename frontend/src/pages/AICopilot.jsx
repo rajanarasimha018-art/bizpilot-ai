@@ -11,9 +11,9 @@ import { generateBusinessInsights } from "../services/groq";
 
 export default function AICopilot() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-
+  
   const [question, setQuestion] = useState("");
-
+  const [loading, setLoading] = useState(false);
   const [messages, setMessages] = useState([
     {
       type: "ai",
@@ -37,7 +37,12 @@ export default function AICopilot() {
 
   setQuestion("");
 
+  // Show thinking animation
+  setLoading(true);
+
   const answer = await generateBusinessInsights(userQuestion);
+
+  setLoading(false);
 
   setMessages((prev) => [
     ...prev,
@@ -111,6 +116,38 @@ message={msg.message}
 />
 
 ))}
+
+{loading && (
+  <div className="flex justify-start mb-4">
+    <div className="bg-slate-900 border border-slate-700 rounded-2xl px-5 py-4 max-w-[80%] shadow-lg">
+
+      <p className="text-purple-400 font-semibold mb-3">
+        🤖 BizPilot AI
+      </p>
+
+      <div className="space-y-2 text-slate-300">
+
+        <p className="animate-pulse">
+          🔍 Analyzing your business...
+        </p>
+
+        <p className="animate-pulse">
+          📦 Checking inventory...
+        </p>
+
+        <p className="animate-pulse">
+          📈 Reviewing sales...
+        </p>
+
+        <p className="animate-pulse">
+          🧠 Generating recommendations...
+        </p>
+
+      </div>
+
+    </div>
+  </div>
+)}
 
 </div>
 <SuggestionCards
