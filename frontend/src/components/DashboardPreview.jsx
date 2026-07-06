@@ -44,14 +44,14 @@ export default function DashboardPreview() {
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 <MetricCard 
                   title="Revenue" 
-                  value="$48.2k" 
+                  value="₹48.2k" 
                   change="12.5%" 
                   trend="up"
                   icon={<svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>}
                 />
                 <MetricCard 
                   title="Expenses" 
-                  value="$12.1k" 
+                  value="₹12.1k" 
                   change="4.2%" 
                   trend="down"
                   icon={<svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" /></svg>}

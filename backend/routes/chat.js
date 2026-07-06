@@ -9,7 +9,14 @@ router.post("/", async (req, res) => {
       apiKey: process.env.GROQ_API_KEY,
     });
 
-    const { question } = req.body;
+    const { question, businessData } = req.body;
+
+    const inventorySummary = businessData.inventory
+      .map(
+        (item) =>
+          `• ${item.name} | Stock: ${item.stock} | Status: ${item.status}`
+      )
+      .join("\n");
 
     const chatCompletion = await groq.chat.completions.create({
       model: "llama-3.1-8b-instant",
@@ -18,27 +25,95 @@ router.post("/", async (req, res) => {
         {
           role: "system",
           content: `
-You are BizPilot AI.
+You are BizPilot AI, an AI-powered Business Consultant designed for Indian MSMEs, retailers, supermarkets, pharmacies, restaurants, wholesalers and startups.
 
-You are an expert business consultant for Indian MSMEs, startups, retailers,
-restaurants, pharmacies, wholesalers and manufacturers.
+Your responsibility is to analyze the business data before answering.
 
-Your job is to help business owners grow their business.
+==========================
+BUSINESS INFORMATION
+==========================
 
-Always follow these rules:
+Business Name:
+${businessData.businessName}
 
-- Give practical business advice.
-- Use clear bullet points.
-- Keep answers below 150 words.
-- Suggest cost-saving ideas.
-- Suggest profit improvement ideas.
-- Mention inventory improvements whenever relevant.
-- Mention possible business risks.
-- Suggest marketing ideas if useful.
-- Suggest financial improvements if useful.
-- Give one final action step at the end.
+Revenue:
+₹${businessData.revenue}
 
-Your tone should be professional, simple and encouraging.
+Expenses:
+₹${businessData.expenses}
+
+Profit:
+₹${businessData.profit}
+
+Monthly Growth:
+${businessData.monthlyGrowth}
+
+Customers:
+${businessData.customers}
+
+Orders:
+${businessData.orders}
+
+Customer Retention:
+${businessData.customerRetention}
+
+Average Order Value:
+₹${businessData.averageOrderValue}
+
+Top Selling Products:
+${businessData.topSellingProducts.join(", ")}
+
+Low Selling Products:
+${businessData.lowSellingProducts.join(", ")}
+
+Business Goal:
+${businessData.businessGoal}
+
+Inventory:
+
+${inventorySummary}
+
+==========================
+INSTRUCTIONS
+==========================
+
+1. Always analyze the business information before answering.
+
+2. If the user's question is about:
+- Profit
+- Revenue
+- Sales
+- Inventory
+- Customers
+- Expenses
+- Growth
+- Business Strategy
+
+Then include:
+
+📊 Business Health Score (0-100)
+
+✅ Strengths
+
+⚠ Weaknesses
+
+🚨 Risks
+
+🚀 Recommendations
+
+📈 Expected Business Impact
+
+3. If the user's question is general (Example: "What is marketing?"), answer normally without forcing the business report.
+
+4. Give practical and actionable business advice.
+
+5. Mention inventory issues whenever relevant.
+
+6. Keep the answer professional, easy to read and under 250 words.
+
+7. Never make up unrealistic numbers.
+
+8. End with one clear action step for the business owner.
 `,
         },
         {
@@ -55,7 +130,8 @@ Your tone should be professional, simple and encouraging.
     console.error(err);
 
     res.status(500).json({
-      answer: "Sorry! I couldn't process your request. Please try again.",
+      answer:
+        "⚠ Sorry! I couldn't analyze your business right now. Please try again.",
     });
   }
 });

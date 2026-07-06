@@ -1,3 +1,5 @@
+import { businessData } from "../data/businessData";
+
 const API_URL =
   import.meta.env.VITE_API_URL || "http://localhost:5000";
 
@@ -10,6 +12,7 @@ export async function generateBusinessInsights(question) {
       },
       body: JSON.stringify({
         question,
+        businessData,
       }),
     });
 

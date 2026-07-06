@@ -46,7 +46,7 @@ export default function Dashboard() {
           <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
             <StatsCard 
               title="Total Revenue" 
-              value="$48,295" 
+              value="₹48,295" 
               change="12.5%" 
               trend="up" 
               gradient="from-indigo-500 to-blue-500"
@@ -54,7 +54,7 @@ export default function Dashboard() {
             />
             <StatsCard 
               title="Total Expenses" 
-              value="$12,432" 
+              value="₹12,432" 
               change="4.2%" 
               trend="down" 
               gradient="from-purple-500 to-pink-500"
