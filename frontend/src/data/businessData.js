@@ -23,8 +23,37 @@ export const businessData = {
     "Shampoo"
   ],
 
-  inventory: [
-    ...
+   inventory: [
+    {
+      name: "Rice",
+      stock: 180,
+      status: "Healthy"
+    },
+    {
+      name: "Milk",
+      stock: 12,
+      status: "Low"
+    },
+    {
+      name: "Cooking Oil",
+      stock: 95,
+      status: "Healthy"
+    },
+    {
+      name: "Sugar",
+      stock: 35,
+      status: "Medium"
+    },
+    {
+      name: "Soap",
+      stock: 15,
+      status: "Low"
+    },
+    {
+      name: "Shampoo",
+      stock: 8,
+      status: "Critical"
+    }
   ],
 
   businessGoal:
